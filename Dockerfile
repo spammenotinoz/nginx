@@ -1,10 +1,7 @@
 FROM nginx:alpine
 
-# Install dependencies
-RUN apk add --no-cache gcc musl-dev linux-headers luajit luajit-dev
-
-# Install the Lua module
-RUN apk add --no-cache nginx-mod-http-lua
+# Install dependencies and Lua module
+RUN apk add --no-cache nginx-mod-http-lua luajit
 
 # Load the Lua module in Nginx configuration
 RUN echo "load_module modules/ngx_http_lua_module.so;" > /etc/nginx/modules/lua.conf
